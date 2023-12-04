@@ -1,0 +1,7 @@
+{
+  "name": "prueba-luis-liguori",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
