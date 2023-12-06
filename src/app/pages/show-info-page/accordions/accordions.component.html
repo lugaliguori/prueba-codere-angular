@@ -1,0 +1,44 @@
+<ion-accordion-group>
+  <ion-accordion value="first">
+    <ion-item slot="header" color="light">
+      <ion-label>Episodios</ion-label>
+    </ion-item>
+    @if(episodes.length > 0 ){
+      @for(episode of episodes; track $index){
+        <div id="episode" class="ion-padding" slot="content">
+          Temporada {{episode.season}}, Episodio {{episode.numberOfEpisode}}: {{episode.name}}
+        </div>
+      }
+    }
+  </ion-accordion>
+  <ion-accordion value="second">
+    <ion-item slot="header" color="light">
+      <ion-label>Elenco</ion-label>
+    </ion-item>
+    @if(cast.length > 0){
+      @for(cast of cast; track $index){
+        <div id="cast" class="ion-padding person-image" slot="content">
+          <ion-thumbnail>
+            <img alt="person image" id="castImage" [src]="cast.image? cast.image : notFoundImg" />
+          </ion-thumbnail>
+           {{cast.name}} - {{ cast.characterName}}
+        </div>
+      }
+    }
+  </ion-accordion>
+  <ion-accordion value="third">
+    <ion-item slot="header" color="light">
+      <ion-label>Equipo de filmacion</ion-label>
+    </ion-item>
+    @if(crew.length > 0){
+      @for(crewMember of crew; track $index){
+        <div id="crew" class="ion-padding person-image" slot="content">
+          <ion-thumbnail>
+            <img alt="person image" id="crewImage" [src]="crewMember.image? crewMember.image : notFoundImg" />
+          </ion-thumbnail>
+          {{crewMember.name}} - {{crewMember.role}}
+        </div>
+      }
+    }
+  </ion-accordion>
+</ion-accordion-group>

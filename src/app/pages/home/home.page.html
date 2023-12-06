@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title>
+      Guias de shows
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar color="dark">
+      <ion-title size="large"> Guia de shows</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row>
+        <ion-searchbar [(ngModel)]="searchString"  
+                        [ngModelOptions]="{standalone: true}" show-clear-button="always" 
+                        placeholder="Buscar shows" [debounce]="1000" (ionInput)="searchShowByName()">
+        </ion-searchbar>
+    </ion-row>
+  </ion-grid>
+  
+  <ion-grid>
+
+    @if (!!loadingShows$){
+
+    
+
+      @if (searchString){
+        <app-show-carousels [title]="'Resultados de la busqueda'" [showList]="searchList"></app-show-carousels>
+      }
+
+      @if(showList.length){
+        <app-show-carousels [title]="'Shows más valorados segun la critica'" [showList]="showList"></app-show-carousels>
+      }
+
+      @if(dramaList.length){
+        <app-show-carousels [title]="'Shows de Drama'" [showList]="dramaList"></app-show-carousels>
+      }
+     
+     
+      @if(comedyList.length){
+        <app-show-carousels [title]="'Shows de Comedia'" [showList]="comedyList"></app-show-carousels>
+      }
+  
+      @if(horrorList.length){
+        <app-show-carousels [title]="'Shows de Horror'" [showList]="horrorList"></app-show-carousels>
+      }
+  
+      @if(scienceFic.length){
+        <app-show-carousels [title]="'Show de Ciencia Ficcion'" [showList]="scienceFic"></app-show-carousels>
+      }
+  
+    }
+    
+  </ion-grid>
+</ion-content>
