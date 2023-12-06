@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [routerLink]="'/home'"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{!loading ? showInfo.name : ''}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button [routerLink]="'/home'"></ion-back-button>
+      </ion-buttons>
+      <ion-title size="large">{{!loading ?  showInfo.name : ''}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  @if(!loading){
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-sm="3">
+          <ion-img alt="show image"  [src]="showInfo.image ? showInfo.image : notFoundImg" loading="lazy"></ion-img>
+        </ion-col>
+        <ion-col size="12" size-sm="9">
+          <p id="summary" [innerHTML]="showInfo.summary"></p>
+        
+          <p id="genres">
+            <b>Generos:</b>
+            @for(genre of showInfo.genre; track $index){
+              {{genre}}
+            }
+          </p>
+          <p id="rating">
+            Calificacion:
+            {{showInfo.rating}} / 10
+          </p>
+          <p id="dates">
+            Emisión: {{showInfo.releaseDate  | date:'yyy'}} 
+            @if (showInfo.endDate){
+              {{showInfo.endDate  | date:'yyy'}}
+            }@else{
+              presente
+            }
+
+          </p>
+        </ion-col>
+
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <app-accordions [episodes]="episodeList" [crew]="crewList" [cast]="castList"></app-accordions>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  }@else{
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="1">
+          <ion-spinner></ion-spinner>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    
+      
+  }
+</ion-content>

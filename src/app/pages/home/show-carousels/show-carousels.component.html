@@ -1,0 +1,21 @@
+<ion-row>
+  <ion-col>
+    <h1>{{title}}</h1>
+  </ion-col>
+</ion-row>
+
+<ion-row>
+  <ion-col>
+    @if (showList.length > 0){
+      <swiper-container [breakpoints]="swiperBreakpoints">
+        @for (show of showList; track $index){
+          <swiper-slide (click)="goToShow(show.id)">
+            <app-show-card [show]="show"></app-show-card>
+          </swiper-slide>
+        }
+      </swiper-container>
+    }@else{
+      <h1><p>No se encontraron resultados</p></h1>
+    }
+  </ion-col>
+</ion-row>

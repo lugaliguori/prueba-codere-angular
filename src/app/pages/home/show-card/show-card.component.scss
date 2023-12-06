@@ -1,0 +1,22 @@
+@media screen and (min-width: 360px){
+    ion-card{
+        min-height: 349px;
+    }
+    
+    ion-img{
+        min-height: 235px;
+    }
+}
+
+
+
+@media screen and (min-width: 640px){
+    ion-card{
+        min-height: 480px;
+    }
+    
+    ion-img{
+        min-height: 365px;
+    }
+}
+
